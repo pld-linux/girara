@@ -1,11 +1,11 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.1.4
+Version:	0.1.5
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
-# Source0-md5:	f348fbe96ceda4a89142cec92de08d25
+# Source0-md5:	fe725fd935c85657008c18bb07c671d4
 URL:		http://pwmt.org/projects/girara
 BuildRequires:	gtk+2-devel >= 2:2.18.6
 BuildRequires:	intltool
