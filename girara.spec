@@ -1,13 +1,13 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.1.7
+Version:	0.1.8
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
-# Source0-md5:	ff73bf26b56cdc28a4a2dcce46f4aa20
+# Source0-md5:	92d95412121406981bb4184ecd344975
 URL:		http://pwmt.org/projects/girara
-BuildRequires:	gtk+2-devel >= 2:2.18.6
+BuildRequires:	gtk+3-devel >= 3.2
 BuildRequires:	intltool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,7 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	LIBDIR=%{_libdir}
 
-%find_lang libgirara-gtk2-1
+%find_lang libgirara-gtk3-1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,18 +63,18 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f libgirara-gtk2-1.lang
+%files -f libgirara-gtk3-1.lang
 %defattr(644,root,root,755)
 %doc LICENSE README
-%attr(755,root,root) %{_libdir}/libgirara-gtk2.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk2.so.1
+%attr(755,root,root) %{_libdir}/libgirara-gtk3.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgirara-gtk2.so
+%attr(755,root,root) %{_libdir}/libgirara-gtk3.so
 %{_includedir}/girara
-%{_pkgconfigdir}/girara-gtk2.pc
+%{_pkgconfigdir}/girara-gtk3.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgirara-gtk2.a
+%{_libdir}/libgirara-gtk3.a
