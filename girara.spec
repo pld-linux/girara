@@ -1,15 +1,16 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.2.0
+Version:	0.2.2
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	https://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
-# Source0-md5:	cb965af58bc435f356296e62629716f5
+Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
+# Source0-md5:	678b0fb6f22d88ba4c29297c67685c50
 URL:		http://pwmt.org/projects/girara
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gtk+3-devel >= 3.2
 BuildRequires:	intltool
+BuildRequires:	libnotify-devel
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,6 +58,8 @@ rm -rf $RPM_BUILD_ROOT
 	LIBDIR=%{_libdir}
 
 %find_lang libgirara-gtk3-1
+
+chmod +x $RPM_BUILD_ROOT%{_libdir}/libgirara-gtk3.so.*.*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
