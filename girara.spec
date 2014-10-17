@@ -1,11 +1,11 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.2.2
+Version:	0.2.3
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
-# Source0-md5:	678b0fb6f22d88ba4c29297c67685c50
+# Source0-md5:	08463b087ba3ad28c38438b2cf716795
 URL:		http://pwmt.org/projects/girara
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gtk+3-devel >= 3.2
@@ -48,7 +48,7 @@ Static girara library.
 %build
 CFLAGS="%{rpmcflags}" \
 LDFLAGS="%{rpmldflags}" \
-%{__make} VERBOSE=1
+%{__make} COLOR=0 VERBOSE=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
