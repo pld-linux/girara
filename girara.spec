@@ -1,18 +1,21 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.2.6
+Version:	0.2.7
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
-# Source0-md5:	99900fc6bfb769a2cc76c234000a64d7
+# Source0-md5:	c6f3b284f458f747823666e03fda022b
 URL:		http://pwmt.org/projects/girara
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gtk+3-devel >= 3.4
 BuildRequires:	intltool
 BuildRequires:	json-c-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	pkgconfig
+Requires:	glib2 >= 1:2.36.0
+Requires:	gtk+3 >= 3.4
+Requires:	libnotify >= 0.7.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
