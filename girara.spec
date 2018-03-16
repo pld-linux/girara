@@ -1,21 +1,25 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.2.8
+Version:	0.2.9
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.gz
-# Source0-md5:	92bb1b6d3ad2704fe4a428fa4e6b0c79
+Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
+# Source0-md5:	631ff6edb1413c043effd37fd920db2b
 URL:		http://pwmt.org/projects/girara
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	intltool
 BuildRequires:	json-c-devel
 BuildRequires:	libnotify-devel >= 0.7.0
+BuildRequires:	meson
+BuildRequires:	ninja
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.727
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.20
 Requires:	libnotify >= 0.7.0
+Obsoletes:	girara-static < 0.2.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,28 +42,17 @@ Requires:	%{name} = %{version}-%{release}
 %description devel
 Header files for girara library.
 
-%package static
-Summary:	Static girara library
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-Static girara library.
-
 %prep
 %setup -q
 
 %build
-CFLAGS="%{rpmcflags}" \
-LDFLAGS="%{rpmldflags}" \
-%{__make} COLOR=0 VERBOSE=1
+%meson build
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	LIBDIR=%{_libdir}
+%meson_install -C build
 
 %find_lang libgirara-gtk3-3
 
@@ -82,7 +75,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgirara-gtk3.so
 %{_includedir}/girara
 %{_pkgconfigdir}/girara-gtk3.pc
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libgirara-gtk3.a
