@@ -12,7 +12,7 @@ BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	intltool
 BuildRequires:	json-c-devel
 BuildRequires:	libnotify-devel >= 0.7.0
-BuildRequires:	meson
+BuildRequires:	meson >= 0.43
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.727
