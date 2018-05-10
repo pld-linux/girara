@@ -1,7 +1,7 @@
 Summary:	User interface library
 Name:		girara
 Version:	0.2.9
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Libraries
 Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
