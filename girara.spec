@@ -1,11 +1,11 @@
 Summary:	User interface library
 Name:		girara
-Version:	0.3.0
+Version:	0.3.1
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
-# Source0-md5:	3ce05d937ee4a247b07e6d6f8f92f0b3
+# Source0-md5:	44a7dcdd32bd15bdbbddf048168b5e11
 URL:		http://pwmt.org/projects/girara
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.20
@@ -14,12 +14,13 @@ BuildRequires:	json-c-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	meson >= 0.43
 BuildRequires:	ninja
+BuildRequires:	pango-devel >= 1:1.14
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.727
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.20
 Requires:	libnotify >= 0.7.0
-Obsoletes:	girara-static < 0.2.9
+Requires:	pango >= 1:1.14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,6 +42,14 @@ Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for girara library.
+
+%package static
+Summary:	Girara static libraries
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Girara static libraries.
 
 %prep
 %setup -q
@@ -75,3 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgirara-gtk3.so
 %{_includedir}/girara
 %{_pkgconfigdir}/girara-gtk3.pc
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libgirara-gtk3.a
