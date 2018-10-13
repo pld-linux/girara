@@ -1,15 +1,18 @@
 Summary:	User interface library
+Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
 Version:	0.3.1
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	http://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
 # Source0-md5:	44a7dcdd32bd15bdbbddf048168b5e11
 URL:		http://pwmt.org/projects/girara
+# C11
+BuildRequires:	gcc >= 6:4.7
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.20
-BuildRequires:	intltool
 BuildRequires:	json-c-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	meson >= 0.43
@@ -35,27 +38,55 @@ with current information. girara was designed to replace and enhance
 the user interface that is used by zathura and jumanji and other
 features that those applications share.
 
+%description -l pl.UTF-8
+girara to biblioteka implementująca interfejs użytkownika skupiający
+się na prostocie i minimalizmie. Obecnie jest oparty na GTK+ -
+wieloplatformowym toolkicie widgetów - zapewnia interfejs o trzech
+głównych komponentach: tzw. widgecie widoku, reprezentującym właściwą
+aplikację (np. stronę dla przeglądarki WWW, obraz dla przeglądarki
+obrazków czy dokument dla przeglądarki dokumentów), pasku wprowadzania
+służącym do wydawania poleceń oraz pasku stanu udostępniającym
+użytkownikowi aktualne informacje. girara została zaprojektowana w
+celu zastąpienia i rozszerzenia interfejsu użytkownika używanego przez
+aplikacje zathura i jumanji, a także innych funkcji dzielonych przez
+te aplikacje.
+
 %package devel
 Summary:	Header files for girara library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki girara
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.50.0
+Requires:	gtk+3-devel >= 3.20
+Requires:	json-c-devel
+Requires:	libnotify-devel >= 0.7.0
+Requires:	pango-devel >= 1:1.14
 
 %description devel
 Header files for girara library.
 
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki girara.
+
 %package static
-Summary:	Girara static libraries
+Summary:	Girara static library
+Summary(pl.UTF-8):	Statyczna biblioteka girara
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Girara static libraries.
+Girara static library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka girara.
 
 %prep
 %setup -q
 
 %build
-%meson build
+%meson build \
+	-Denable-notify=true
+
 %meson_build -C build
 
 %install
@@ -65,8 +96,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %find_lang libgirara-gtk3-3
 
-chmod +x $RPM_BUILD_ROOT%{_libdir}/libgirara-gtk3.so.*.*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -75,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f libgirara-gtk3-3.lang
 %defattr(644,root,root,755)
-%doc LICENSE README
+%doc AUTHORS LICENSE README
 %attr(755,root,root) %{_libdir}/libgirara-gtk3.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.3
 
