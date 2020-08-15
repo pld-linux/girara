@@ -20,7 +20,7 @@ BuildRequires:	meson >= 0.48
 BuildRequires:	ninja
 BuildRequires:	pango-devel >= 1:1.14
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.727
+BuildRequires:	rpmbuild(macros) >= 1.736
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.20
 Requires:	libnotify >= 0.7.0
@@ -88,14 +88,15 @@ Statyczna biblioteka girara.
 %meson build \
 	-Denable-notify=true
 
-%meson_build -C build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%meson_install -C build
+%ninja_install -C build
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{fa_IR,uk_UA}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{fa_IR,fa}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{uk_UA,uk}
 
 %find_lang libgirara-gtk3-3
 
