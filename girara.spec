@@ -1,13 +1,13 @@
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
-Version:	0.3.5
+Version:	0.3.6
 Release:	1
 License:	BSD-like
 Group:		Libraries
 #Source0Download: https://git.pwmt.org/pwmt/girara/-/tags
 Source0:	https://git.pwmt.org/pwmt/girara/-/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	9a3ac4d52e7f791aca842ca85c861263
+# Source0-md5:	07610bb46e2a90d30021d9ee8bb78ad6
 URL:		http://pwmt.org/projects/girara
 # C11
 BuildRequires:	gcc >= 6:4.7
