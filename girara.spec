@@ -1,13 +1,13 @@
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
-Version:	0.3.6
+Version:	0.3.7
 Release:	1
 License:	BSD-like
 Group:		Libraries
 #Source0Download: https://git.pwmt.org/pwmt/girara/-/tags
 Source0:	https://git.pwmt.org/pwmt/girara/-/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	07610bb46e2a90d30021d9ee8bb78ad6
+# Source0-md5:	632ef1ba9fcb6450dc49d8b7c4b14b26
 URL:		http://pwmt.org/projects/girara
 # C11
 BuildRequires:	gcc >= 6:4.7
@@ -16,7 +16,7 @@ BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	json-c-devel
 BuildRequires:	libnotify-devel >= 0.7.0
-BuildRequires:	meson >= 0.48
+BuildRequires:	meson >= 0.56
 BuildRequires:	ninja
 BuildRequires:	pango-devel >= 1:1.14
 BuildRequires:	pkgconfig
@@ -86,7 +86,7 @@ Statyczna biblioteka girara.
 
 %build
 %meson build \
-	-Denable-notify=true
+	-Dnotify=enabled
 
 %ninja_build -C build
 
@@ -108,7 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f libgirara-gtk3-3.lang
 %defattr(644,root,root,755)
-%doc AUTHORS LICENSE README
+%doc AUTHORS LICENSE README.md
 %attr(755,root,root) %{_libdir}/libgirara-gtk3.so.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.3
 
