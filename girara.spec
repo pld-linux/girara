@@ -1,20 +1,20 @@
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
-Version:	0.3.7
+Version:	0.3.9
 Release:	1
 License:	BSD-like
 Group:		Libraries
 #Source0Download: https://git.pwmt.org/pwmt/girara/-/tags
 Source0:	https://git.pwmt.org/pwmt/girara/-/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	632ef1ba9fcb6450dc49d8b7c4b14b26
+# Source0-md5:	fdd0a60f280fb097732fc0e74b0f3d44
 URL:		http://pwmt.org/projects/girara
 # C11
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.20
-BuildRequires:	json-c-devel
+BuildRequires:	json-glib-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	meson >= 0.56
 BuildRequires:	ninja
@@ -59,7 +59,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.50.0
 Requires:	gtk+3-devel >= 3.20
-Requires:	json-c-devel
+Requires:	json-glib-devel
 Requires:	libnotify-devel >= 0.7.0
 Requires:	pango-devel >= 1:1.14
 
