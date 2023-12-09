@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
@@ -86,6 +90,7 @@ Statyczna biblioteka girara.
 
 %build
 %meson build \
+	%{!?with_static_libs:--default-library=shared} \
 	-Dnotify=enabled
 
 %ninja_build -C build
@@ -118,6 +123,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/girara
 %{_pkgconfigdir}/girara-gtk3.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgirara-gtk3.a
+%endif
