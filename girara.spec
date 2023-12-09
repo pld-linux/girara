@@ -13,7 +13,7 @@ Group:		Libraries
 Source0:	https://git.pwmt.org/pwmt/girara/-/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	7aef527f5f0210c822fb9767b9f6ae8b
 URL:		http://pwmt.org/projects/girara
-# C11
+# C17
 BuildRequires:	gcc >= 6:8.1
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.50.0
