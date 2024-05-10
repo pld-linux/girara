@@ -5,30 +5,29 @@
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
-Version:	0.4.2
+Version:	0.4.4
 Release:	1
 License:	BSD-like
 Group:		Libraries
-#Source0Download: https://git.pwmt.org/pwmt/girara/-/tags
-Source0:	https://git.pwmt.org/pwmt/girara/-/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	aa179b65ab0dcafcd3a768efcd7bbade
+Source0:	https://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
+# Source0-md5:	085b6593889cb2e302426390d108fd0b
 URL:		http://pwmt.org/projects/girara
 # C17
 BuildRequires:	gcc >= 6:8.1
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.50.0
-BuildRequires:	gtk+3-devel >= 3.20
+BuildRequires:	glib2-devel >= 1:2.72.0
+BuildRequires:	gtk+3-devel >= 3.24
 BuildRequires:	json-glib-devel
-BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	meson >= 0.61
 BuildRequires:	ninja
-BuildRequires:	pango-devel >= 1:1.14
+BuildRequires:	pango-devel >= 1:1.50
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.736
-Requires:	glib2 >= 1:2.50.0
-Requires:	gtk+3 >= 3.20
-Requires:	libnotify >= 0.7.0
-Requires:	pango >= 1:1.14
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
+Requires:	glib2 >= 1:2.72.0
+Requires:	gtk+3 >= 3.24
+Requires:	pango >= 1:1.50
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,11 +60,10 @@ Summary:	Header files for girara library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki girara
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.50.0
-Requires:	gtk+3-devel >= 3.20
+Requires:	glib2-devel >= 1:2.72.0
+Requires:	gtk+3-devel >= 3.24
 Requires:	json-glib-devel
-Requires:	libnotify-devel >= 0.7.0
-Requires:	pango-devel >= 1:1.14
+Requires:	pango-devel >= 1:1.50
 
 %description devel
 Header files for girara library.
@@ -90,8 +88,7 @@ Statyczna biblioteka girara.
 
 %build
 %meson build \
-	%{!?with_static_libs:--default-library=shared} \
-	-Dnotify=enabled
+	%{!?with_static_libs:--default-library=shared}
 
 %ninja_build -C build
 
@@ -103,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{fa_IR,fa}
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{uk_UA,uk}
 
-%find_lang libgirara-gtk3-3
+%find_lang libgirara-gtk3-4
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -111,11 +108,11 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f libgirara-gtk3-3.lang
+%files -f libgirara-gtk3-4.lang
 %defattr(644,root,root,755)
 %doc AUTHORS LICENSE README.md
 %attr(755,root,root) %{_libdir}/libgirara-gtk3.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.3
+%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.4
 
 %files devel
 %defattr(644,root,root,755)
