@@ -22,7 +22,7 @@ BuildRequires:	meson >= 0.61
 BuildRequires:	ninja
 BuildRequires:	pango-devel >= 1:1.50
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.72.0
