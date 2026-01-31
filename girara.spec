@@ -5,12 +5,12 @@
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
-Version:	0.4.5
+Version:	2026.01.30
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
-# Source0-md5:	ec14bf17e208951d367ced43b0259171
+# Source0-md5:	cec629a0620a586b98757b60ccf6b760
 URL:		http://pwmt.org/projects/girara
 # C17
 BuildRequires:	gcc >= 6:8.1
@@ -18,7 +18,7 @@ BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.72.0
 BuildRequires:	gtk+3-devel >= 3.24
 BuildRequires:	json-glib-devel
-BuildRequires:	meson >= 0.61
+BuildRequires:	meson >= 1.5
 BuildRequires:	ninja
 BuildRequires:	pango-devel >= 1:1.50
 BuildRequires:	pkgconfig
@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{fa_IR,fa}
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{uk_UA,uk}
 
-%find_lang libgirara-gtk3-4
+%find_lang org.pwmt.girara.gtk3.5
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,11 +108,11 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f libgirara-gtk3-4.lang
+%files -f org.pwmt.girara.gtk3.5.lang
 %defattr(644,root,root,755)
 %doc AUTHORS LICENSE README.md
 %attr(755,root,root) %{_libdir}/libgirara-gtk3.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.4
+%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.5
 
 %files devel
 %defattr(644,root,root,755)
