@@ -5,29 +5,23 @@
 Summary:	User interface library
 Summary(pl.UTF-8):	Biblioteka interfejsu użytkownika
 Name:		girara
-Version:	2026.01.30
+Version:	2026.02.04
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	https://pwmt.org/projects/girara/download/%{name}-%{version}.tar.xz
-# Source0-md5:	cec629a0620a586b98757b60ccf6b760
+# Source0-md5:	740d05a8eb7c66e760c115246d5f3c3f
 URL:		http://pwmt.org/projects/girara
 # C17
 BuildRequires:	gcc >= 6:8.1
-BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.72.0
-BuildRequires:	gtk+3-devel >= 3.24
-BuildRequires:	json-glib-devel
 BuildRequires:	meson >= 1.5
 BuildRequires:	ninja
-BuildRequires:	pango-devel >= 1:1.50
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.72.0
-Requires:	gtk+3 >= 3.24
-Requires:	pango >= 1:1.50
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,9 +55,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki girara
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.72.0
-Requires:	gtk+3-devel >= 3.24
-Requires:	json-glib-devel
-Requires:	pango-devel >= 1:1.50
 
 %description devel
 Header files for girara library.
@@ -97,31 +88,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %meson_install
 
-%{__mv} $RPM_BUILD_ROOT%{_localedir}/{fa_IR,fa}
-%{__mv} $RPM_BUILD_ROOT%{_localedir}/{uk_UA,uk}
-
-%find_lang org.pwmt.girara.gtk3.5
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f org.pwmt.girara.gtk3.5.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS LICENSE README.md
-%attr(755,root,root) %{_libdir}/libgirara-gtk3.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgirara-gtk3.so.5
+%attr(755,root,root) %{_libdir}/libgirara.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgirara.so.5
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgirara-gtk3.so
+%attr(755,root,root) %{_libdir}/libgirara.so
 %{_includedir}/girara
-%{_pkgconfigdir}/girara-gtk3.pc
+%{_pkgconfigdir}/girara.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgirara-gtk3.a
+%{_libdir}/libgirara.a
 %endif
